@@ -9,102 +9,37 @@ format:
 editor: visual
 ---
 
-# Installation
+<br>
+
+# Overview
+> * Package that streamlines color palette usage, adapated from the [Tableau 10 Palette](https://www.tableau.com/blog/colors-upgrade-tableau-10-56782)  
+> * Leverages `ggplot2`-like functionality  
+> * See colorblind statistics for the [fill palette](https://davidmathlogic.com/colorblind/#%23BECDE0-%23FFD597-%23F6B7B4-%23BEE0D2-%23E4C6DC-%23BDDBE1-%23F7E5B3-%23DCDADA-%23FCC8DA-%23E5CFC5) and the [color (*line*) palette](https://davidmathlogic.com/colorblind/#%236388B4-%23E68900-%23EB4B43-%2354AC88-%23B07AA1-%233C9DAA-%23C5A952-%238A807E-%23D16D91-%23945430)
+
+
+<br>
+
+# Installation of Package
 
 ```{r, eval=FALSE}
-# install.packages("devtools")
+# Install devtools if not installed (for GitHub Package)
+if (!require("devtools"))   install.packages("devtools")
+
+# Install the styles repository
 remotes::install_github("Daniel-Carpenter/styles")
 ```
 
 
-```{r, echo=FALSE, message=FALSE}
-devtools::load_all(".")
-```
-
-
-# Basic Usage of Functions
-
-## Get the Theme
-
-```{r}
-# Retreive theme with helpful theme functions
-library(styles)
-```
-
-## Colors
-
-### What Colors are Available?
-
--   Notice `displayNames = TRUE`, which show you what hex codes are associated with the color names.
-
--   Default is `displayNames = FALSE` for best functionality with plotting
-
-#### Fill colors
-
-```{r}
-scale_dbc('fill', displayNames = TRUE)
-```
-
-#### Line colors
-
-```{r}
-scale_dbc('color', displayNames = TRUE)
-```
-
-#### Base colors, like the ones on the navy background of slide decks
-
-```{r}
-scale_dbc('base', displayNames = TRUE)
-```
-
-#### Text, Background, Border, and Greyed out colors
-
--   These are all separate since usually only selecting one
-
-```{r}
-scale_dbc('text')       # Text (dark gray) 
-scale_dbc('background') # Background (white)
-scale_dbc('border')     # Border (light gray)
-scale_dbc('grayedOut')  # (Very light gray)
-```
-
-<br>
-
-### How to get `1` color?
-
-```{r}
-# Single color from the fill palette
-scale_dbc('fill', 'red')
-
-# Single color from the base palette
-scale_dbc('base', 'navy')
-```
-
-<br>
-
-### How to get `>1` colors
-
-```{r}
-# Get the first 3 colors in the line palette
-scale_dbc('color', 3)
-
-# Get the last 3 colors in the fill palette
-scale_dbc('color')[6:8]
-
-# Or access specific colors all at once
-scale_dbc('color', 'blue', 'orange', 'green', 'yellow')
-```
-
-<br>
-
-------------------------------------------------------------------------
-
-<br>
 
 # `ggplot2` Integration
 
-### Create a basic plot structure
+```{r}
+# Retrieve theme with helpful theme functions
+library(styles)
+library(ggplot2)
+```
 
+### Create a basic plot structure
 > Does *NOT* include DBC Styles
 
 ```{r}
@@ -123,13 +58,31 @@ basePlot # Display
 
 ## Use Multiple Colors
 
+### Default Color Palette
+
 > Using DBC Style
 
 ```{r}
 basePlot +
   
-  # Use the DBC Fill palette
+  # Use the DBC color palette
   scale_color_dbc() +
+  
+  # Get the DBC ggplot theme
+  theme_dbc()
+```
+
+<br>
+
+### Override Color with Fill
+
+> Using DBC Style
+
+```{r}
+basePlot +
+  
+  # Use the DBC Fill palette (override)
+  scale_color_manual(values = scale_dbc('fill', 3) ) +
   
   # Get the DBC ggplot theme
   theme_dbc()
@@ -151,3 +104,74 @@ basePlot +
   # Get the DBC ggplot theme
   theme_dbc()
 ```
+
+<br>
+
+# Colors Deep Dive
+
+## What Colors are Available?
+
+-   Notice `displayNames = TRUE`, which show you what hex codes are associated with the color names.
+
+-   Default is `displayNames = FALSE` for best functionality with plotting
+
+### Fill colors
+
+```{r}
+scale_dbc('fill', displayNames = TRUE)
+```
+
+### Line colors
+
+```{r}
+scale_dbc('color', displayNames = TRUE)
+```
+
+### Base colors, like the ones on the navy background of slide decks
+
+```{r}
+scale_dbc('base', displayNames = TRUE)
+```
+
+### Text, Background, Border, and Greyed out colors
+
+-   These are all separate since usually only selecting one
+
+```{r}
+scale_dbc('text')       # Text (dark gray) 
+scale_dbc('background') # Background (white)
+scale_dbc('border')     # Border (light gray)
+scale_dbc('grayedOut')  # (Very light gray)
+```
+
+<br>
+
+## How to get `1` color?
+
+```{r}
+# Single color from the fill palette
+scale_dbc('fill', 'red')
+
+# Single color from the base palette
+scale_dbc('base', 'navy')
+```
+
+<br>
+
+## How to get `>1` colors
+
+```{r}
+# Get the first 3 colors in the line palette
+scale_dbc('color', 3)
+
+# Get the last 3 colors in the fill palette
+scale_dbc('color')[6:8]
+
+# Or access specific colors all at once
+scale_dbc('color', 'blue', 'orange', 'green', 'yellow')
+```
+
+<br>
+
+------------------------------------------------------------------------
+
