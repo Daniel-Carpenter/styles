@@ -1,0 +1,153 @@
+---
+title: "DBC Style Guide Usage and Examples"
+author: "Daniel Carpenter"
+format: 
+    gfm:
+      toc: true
+      toc-depth: 3
+      number-sections: true
+editor: visual
+---
+
+# Installation
+
+```{r, eval=FALSE}
+# install.packages("devtools")
+remotes::install_github("Daniel-Carpenter/styles")
+```
+
+
+```{r, echo=FALSE, message=FALSE}
+devtools::load_all(".")
+```
+
+
+# Basic Usage of Functions
+
+## Get the Theme
+
+```{r}
+# Retreive theme with helpful theme functions
+library(styles)
+```
+
+## Colors
+
+### What Colors are Available?
+
+-   Notice `displayNames = TRUE`, which show you what hex codes are associated with the color names.
+
+-   Default is `displayNames = FALSE` for best functionality with plotting
+
+#### Fill colors
+
+```{r}
+scale_dbc('fill', displayNames = TRUE)
+```
+
+#### Line colors
+
+```{r}
+scale_dbc('color', displayNames = TRUE)
+```
+
+#### Base colors, like the ones on the navy background of slide decks
+
+```{r}
+scale_dbc('base', displayNames = TRUE)
+```
+
+#### Text, Background, Border, and Greyed out colors
+
+-   These are all separate since usually only selecting one
+
+```{r}
+scale_dbc('text')       # Text (dark gray) 
+scale_dbc('background') # Background (white)
+scale_dbc('border')     # Border (light gray)
+scale_dbc('grayedOut')  # (Very light gray)
+```
+
+<br>
+
+### How to get `1` color?
+
+```{r}
+# Single color from the fill palette
+scale_dbc('fill', 'red')
+
+# Single color from the base palette
+scale_dbc('base', 'navy')
+```
+
+<br>
+
+### How to get `>1` colors
+
+```{r}
+# Get the first 3 colors in the line palette
+scale_dbc('color', 3)
+
+# Get the last 3 colors in the fill palette
+scale_dbc('color')[6:8]
+
+# Or access specific colors all at once
+scale_dbc('color', 'blue', 'orange', 'green', 'yellow')
+```
+
+<br>
+
+------------------------------------------------------------------------
+
+<br>
+
+# `ggplot2` Integration
+
+### Create a basic plot structure
+
+> Does *NOT* include DBC Styles
+
+```{r}
+basePlot <- ggplot(data = mtcars,
+               aes(x     = wt,
+                   shape = as.factor(cyl),
+                   color = as.factor(cyl),
+                   y     = mpg
+                   )
+               ) +
+          geom_point(size = 5)
+basePlot # Display
+```
+
+<br>
+
+## Use Multiple Colors
+
+> Using DBC Style
+
+```{r}
+basePlot +
+  
+  # Use the DBC Fill palette
+  scale_color_dbc() +
+  
+  # Get the DBC ggplot theme
+  theme_dbc()
+```
+
+<br>
+
+## Use only `1` Color
+
+> Using DBC Style
+
+```{r}
+basePlot + 
+  
+  # Use only a single color (note using line palette)
+  geom_point(color = scale_dbc('color', 'blue'),
+             size  = 5) +
+  
+  # Get the DBC ggplot theme
+  theme_dbc()
+```

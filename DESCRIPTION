@@ -1,0 +1,17 @@
+Package: styles
+Type: Package
+Date: 2022-12-01
+Version: 0.1.0
+Title: R color palettes and styles.
+Author@R: person("Daniel", "Carpenter", email = "dbry1024@gmail.com",
+                  role = c("aut", "cre") )
+Author: Daniel Carpenter [aut, cre]
+Maintainer: Daniel Carpenter <dbry1024@gmail.com>
+License: GPL (>= 2)
+Description: Color style implementation in R using `ggplot2`. Also includes R library.
+Encoding: UTF-8
+LazyData: true
+Depends: R (>= 3.1.0)
+Imports:
+    ggplot2
+RoxygenNote: 7.2.1
