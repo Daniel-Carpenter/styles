@@ -7,7 +7,7 @@
 
     <a class="navbar-brand me-2" href="../index.html">styles</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.11</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.12</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -18,8 +18,8 @@
       <ul class="navbar-nav me-auto"><li class="active nav-item"><a class="nav-link" href="../reference/index.html">Reference</a></li>
 <li class="nav-item dropdown">
   <button class="nav-link dropdown-toggle" type="button" id="dropdown-articles" data-bs-toggle="dropdown" aria-expanded="false" aria-haspopup="true">Articles</button>
-  <ul class="dropdown-menu" aria-labelledby="dropdown-articles"><li><a class="dropdown-item" href="../articles/intro-to-package.html">UNKNOWN TITLE</a></li>
-    <li><a class="dropdown-item" href="../articles/simulate-palette.html">UNKNOWN TITLE</a></li>
+  <ul class="dropdown-menu" aria-labelledby="dropdown-articles"><li><a class="dropdown-item" href="../articles/intro-to-package.html">A Guide to the `styles` Package</a></li>
+    <li><a class="dropdown-item" href="../articles/simulate-palette.html">Palette Viewer</a></li>
   </ul></li>
       </ul><ul class="navbar-nav"><li class="nav-item"><form class="form-inline" role="search">
  <input class="form-control" type="search" name="search-input" id="search-input" autocomplete="off" aria-label="Search site" placeholder="Search for" data-search-index="../search.json"></form></li>
@@ -35,8 +35,60 @@
     </div>
 
     <div class="section level2">
-      <h2 id="all-functions">All functions<a class="anchor" aria-label="anchor" href="#all-functions"></a></h2>
+      <h2 id="plot-layers">Plot Layers<a class="anchor" aria-label="anchor" href="#plot-layers"></a></h2>
 
+
+
+
+    </div><div class="section level2">
+
+      <h3 id="scales">Scales<a class="anchor" aria-label="anchor" href="#scales"></a></h3>
+      <div class="section-desc"><p>Scales to add to a <code>ggplot</code> object for branding.</p></div>
+
+
+    </div><div class="section level2">
+
+
+
+
+      <dl><dt>
+
+          <code><a href="scale_dc.html">scale_dc()</a></code>
+
+        </dt>
+        <dd>Function that returns a palette or a set of individual colors within the palette.</dd>
+      </dl><dl><dt>
+
+          <code><a href="scale_color_dc.html">scale_color_dc()</a></code>
+
+        </dt>
+        <dd>ggplot Color Scale</dd>
+      </dl><dl><dt>
+
+          <code><a href="scale_fill_dc.html">scale_fill_dc()</a></code>
+
+        </dt>
+        <dd>ggplot Fill Scale</dd>
+      </dl></div><div class="section level2">
+
+      <h3 id="themes">Themes<a class="anchor" aria-label="anchor" href="#themes"></a></h3>
+      <div class="section-desc"><p>Theme to add to a <code>ggplot</code> object for branding.</p></div>
+
+
+    </div><div class="section level2">
+
+
+
+
+      <dl><dt>
+
+          <code><a href="theme_dc.html">theme_dc()</a></code>
+
+        </dt>
+        <dd>Create a Theme for ggplot</dd>
+      </dl></div><div class="section level2">
+
+      <h3 id="helper-functions">Helper Functions<a class="anchor" aria-label="anchor" href="#helper-functions"></a></h3>
 
 
 
@@ -51,32 +103,9 @@
 
         </dt>
         <dd>Converts value to scaled format. For example, 10^6 returns "$1 MM" in millions format.</dd>
-      </dl><dl><dt>
-
-          <code><a href="scale_color_dc.html">scale_color_dc()</a></code>
-
-        </dt>
-        <dd>ggplot Color Scale</dd>
-      </dl><dl><dt>
-
-          <code><a href="scale_dc.html">scale_dc()</a></code>
-
-        </dt>
-        <dd>Function that returns a palette or a set of individual colors within the palette.</dd>
-      </dl><dl><dt>
-
-          <code><a href="scale_fill_dc.html">scale_fill_dc()</a></code>
-
-        </dt>
-        <dd>ggplot Fill Scale</dd>
-      </dl><dl><dt>
-
-          <code><a href="theme_dc.html">theme_dc()</a></code>
-
-        </dt>
-        <dd>Create a Theme for ggplot</dd>
       </dl></div>
-  </main></div>
+  </main><aside class="col-md-3"><nav id="toc" aria-label="Table of contents"><h2>On this page</h2>
+    </nav></aside></div>
 
 
     <footer><div class="pkgdown-footer-left">
