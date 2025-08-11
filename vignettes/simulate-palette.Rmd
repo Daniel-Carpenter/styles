@@ -2,10 +2,10 @@
 title: "Palette Viewer"
 output: rmarkdown::html_vignette
 vignette: >
-%\VignetteIndexEntry{Palette Viewer}
+  %\VignetteIndexEntry{Palette Viewer}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
-  ---
+---
   
 ```{r, include = FALSE}
 knitr::opts_chunk$set(

@@ -1,13 +1,13 @@
 ---
-title: "A Guide to the styles Package"
+title: "A Guide to the `styles` Package"
 output: 
   rmarkdown::html_vignette:
     toc: yes
 vignette: >
-%\VignetteIndexEntry{A Guide to the styles Package}
+  %\VignetteIndexEntry{A Guide to the styles Package}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
-  ---
+---
   
 ```{r, include = FALSE}
 knitr::opts_chunk$set(
