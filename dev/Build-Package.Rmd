@@ -43,5 +43,5 @@ devtools::install(build_vignettes = TRUE, upgrade = 'never')
 
 ```{r viewVignette}
 # view the vignettes
-# browseVignettes("styles.cmac")
+# browseVignettes("styles")
 ```

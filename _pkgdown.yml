@@ -1,32 +1,4 @@
-url: https://Daniel-Carpenter/styles/
+url: https://daniel-carpenter.github.io/styles/
 template:
   bootstrap: 5
-  bslib:
-    bg: '#FAFAFA'
-    fg: '#363636'
-    primary: '#1F4E79'
-navbar:
-  structure:
-    left:
-    - intro
-    - reference
-    - articles
-    right:
-    - search
-    - github
-reference:
-- title: Plot Layers
-- subtitle: Scales
-  desc: |
-    Scales to add to a `ggplot` object for branding.
-  contents:
-  - scale_dc
-  - scale_color_dc
-  - scale_fill_dc
-- subtitle: Themes
-  desc: |
-    Theme to add to a `ggplot` object for branding.
-  contents: theme_dc
-- subtitle: Helper Functions
-  contents:
-  - kDollarsFormat
+
