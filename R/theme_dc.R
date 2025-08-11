@@ -2,7 +2,6 @@
 #' @description This function creates a custom theme for ggplot with several theme modifications
 #' @return      The function returns a ggplot theme
 #'
-#' @param inTimesNewRoman TRUE if plot in Times New Roman Font (Default), FALSE uses ggplot main font. Only works on Windows.
 #' @param borderMode the theme borderMode, depending on `default` use, `facet` usage, or `borders`.
 #' @param ... Additional parameters that can be passed into the theme() function. Added last to theme.
 #'
@@ -32,8 +31,7 @@
 
 
 # Define the function 'theme_dc' to customize themes for ggplots
-theme_dc <- function(inTimesNewRoman = FALSE,
-                     borderMode = 'default',
+theme_dc <- function(borderMode = 'default',
                      ...) {
   # Define text and border colors
   borderCol     = scale_dc('gray', 'gray7') # border and gridlines
@@ -169,17 +167,6 @@ theme_dc <- function(inTimesNewRoman = FALSE,
 
   # Combine all the defined theme elements
   theme_DC = baseTheme + alignment.left
-
-  # If wanting times new roman then set it
-  if (inTimesNewRoman) {
-    timesNewRoman <- getTimesNewRomanFamily()
-
-    # Create a ggplot object for Times New Roman with default 12 pt font
-    font.TimesNewRoman = theme(text = element_text(family = timesNewRoman, size = 12))
-
-    # Change to times new roman
-    theme_DC = theme_DC + font.TimesNewRoman
-  }
 
   # Anything else passed through parameters added last
   theme_DC = theme_DC + theme(...)

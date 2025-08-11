@@ -30,5 +30,3 @@ reference:
 - subtitle: Helper Functions
   contents:
   - kDollarsFormat
-  - getTimesNewRomanFamily
-

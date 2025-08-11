@@ -4,7 +4,6 @@
 # `styles`
 
 <!-- badges: start -->
-
 <!-- badges: end -->
 
 ## Overview
@@ -122,44 +121,6 @@ basePlot +
 
 <img src="man/figures/README-unnamed-chunk-8-1.png" width="100%" />
 
-### How to use Times New Roman
-
-> Use this setting for ***non-website*** reporting.
-
-#### Non-Label Font Control
-
-``` r
-basePlot +
-  
-  # Use the color palette
-  scale_color_dc() +
-  
-  # Get the ggplot theme
-  theme_dc(inTimesNewRoman = TRUE)
-```
-
-<img src="man/figures/README-unnamed-chunk-9-1.png" width="100%" />
-
-#### Label Font Control
-
-``` r
-basePlot + 
-  
-  geom_text(aes(label = paste(mpg)),
-            vjust = 1.2, hjust = -0.2,
-            size = 3.5,
-            
-            # ** IMPORTANT: theme() does not control text labels
-            # Need to set family to this font!
-            family = styles::getTimesNewRomanFamily()
-  ) + 
-  
-  # This controls all non-label fonts
-  theme_dc(inTimesNewRoman = TRUE)
-```
-
-<img src="man/figures/README-unnamed-chunk-10-1.png" width="100%" />
-
 ### Darken Text when Over Filled Elements
 
 ``` r
@@ -179,7 +140,7 @@ ggplot(mtcars, aes(y = mpg, x = wt, color = as.factor(cyl))) +
   theme_dc()
 ```
 
-<img src="man/figures/README-unnamed-chunk-11-1.png" width="100%" />
+<img src="man/figures/README-unnamed-chunk-9-1.png" width="100%" />
 
 ### Offset or Reverse Order of Colors
 
@@ -188,7 +149,7 @@ ggplot(mtcars, aes(y = mpg, x = wt, color = as.factor(cyl))) +
 basePlot + scale_color_dc(colorOffset = 5)
 ```
 
-<img src="man/figures/README-unnamed-chunk-12-1.png" width="100%" />
+<img src="man/figures/README-unnamed-chunk-10-1.png" width="100%" />
 
 ``` r
 
@@ -196,7 +157,7 @@ basePlot + scale_color_dc(colorOffset = 5)
 basePlot + scale_color_dc(reverseOrder = TRUE)
 ```
 
-<img src="man/figures/README-unnamed-chunk-12-2.png" width="100%" />
+<img src="man/figures/README-unnamed-chunk-10-2.png" width="100%" />
 
 ### Override the palette with a color blind palette
 
@@ -205,7 +166,7 @@ basePlot + scale_color_dc(reverseOrder = TRUE)
 basePlot + scale_color_dc(useColorBlindPalette = TRUE)
 ```
 
-<img src="man/figures/README-unnamed-chunk-13-1.png" width="100%" />
+<img src="man/figures/README-unnamed-chunk-11-1.png" width="100%" />
 
 ``` r
 
@@ -215,7 +176,7 @@ basePlot + scale_color_dc(useColorBlindPalette = TRUE,
                           colorBlindPaletteName = 'color_blind')
 ```
 
-<img src="man/figures/README-unnamed-chunk-13-2.png" width="100%" />
+<img src="man/figures/README-unnamed-chunk-11-2.png" width="100%" />
 
 ## Numeric Formats
 

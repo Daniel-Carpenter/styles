@@ -119,40 +119,6 @@ basePlot +
   theme_dc()
 ```
 
-### How to use Times New Roman
-
-> Use this setting for ***non-website*** reporting.
-
-#### Non-Label Font Control
-
-```{r}
-basePlot +
-  
-  # Use the color palette
-  scale_color_dc() +
-  
-  # Get the ggplot theme
-  theme_dc(inTimesNewRoman = TRUE)
-```
-
-#### Label Font Control
-
-```{r}
-basePlot + 
-  
-  geom_text(aes(label = paste(mpg)),
-            vjust = 1.2, hjust = -0.2,
-            size = 3.5,
-            
-            # ** IMPORTANT: theme() does not control text labels
-            # Need to set family to this font!
-            family = styles::getTimesNewRomanFamily()
-  ) + 
-  
-  # This controls all non-label fonts
-  theme_dc(inTimesNewRoman = TRUE)
-```
-
 ### Darken Text when Over Filled Elements
 
 ```{r}

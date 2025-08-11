@@ -4,11 +4,9 @@
 \alias{theme_dc}
 \title{Create a Theme for ggplot}
 \usage{
-theme_dc(inTimesNewRoman = FALSE, borderMode = "default", ...)
+theme_dc(borderMode = "default", ...)
 }
 \arguments{
-\item{inTimesNewRoman}{TRUE if plot in Times New Roman Font (Default), FALSE uses ggplot main font. Only works on Windows.}
-
 \item{borderMode}{the theme borderMode, depending on `default` use, `facet` usage, or `borders`.}
 
 \item{...}{Additional parameters that can be passed into the theme() function. Added last to theme.}

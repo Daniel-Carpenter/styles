@@ -2,10 +2,10 @@ Package: styles
 Type: Package
 Title: Daniel Carpenter's Branding Packages for `ggplot2`
 Version: 1.10
-Author@R: person("Daniel", "Carpenter", email = "daniel.carpenter@chickasaw.net",
+Author@R: person("Daniel", "Carpenter", email = "dbry1024@gmail.com",
                   role = c("aut", "cre") )
 Author: Daniel Carpenter [aut, cre]
-Maintainer: Daniel Carpenter <daniel.carpenter@chickasaw.net>
+Maintainer: Daniel Carpenter <dbry1024@gmail.com>
 Description: This package implements branding in ggplot2. This package 
     includes the base gray and base gradients, text colors, and the data 
     visualization colors. The package works natively with ggplot2 for ease 
