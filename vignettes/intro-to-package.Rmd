@@ -1,0 +1,337 @@
+---
+title: "A Guide to the styles Package"
+output: 
+  rmarkdown::html_vignette:
+    toc: yes
+vignette: >
+%\VignetteIndexEntry{A Guide to the styles Package}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+  ---
+  
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+collapse = TRUE,
+comment = "#>",
+fig.width = 5.5,
+fig.height = 4
+)
+```
+
+## Overview
+
+The `styles` package provides a suite of functions for color styling in `ggplot2`, with an emphasis on branding for. Notably, it includes a palette that is adapted from the Tableau 10 Palette. This package is designed to streamline the usage of color palettes, with inspiration drawn from the Tableau 10 Palette.
+
+For a deeper dive into the package's colorblind-friendly design, visit the fill palette and color (*line*) palette URLs provided below. This gives an overview of what the palette looks like as a whole.
+
+-   See colorblind statistics for the [fill palette](https://davidmathlogic.com/colorblind/#%23BECDE0-%23FFD39F-%23FFB5B3-%23B4DFCE-%23CDC9E0-%23F2D4A0-%23C3C6D2-%23E6D7D7) and the [color (*line*) palette](https://davidmathlogic.com/colorblind/#%237996B9-%23DBA657-%23C86D6A-%2383AF9E-%23928EA4-%23C2A570-%23828591-%23BAABAB)
+
+-   [*Reference*: Original Tableau 10 Palette](https://www.tableau.com/blog/colors-upgrade-tableau-10-56782)
+
+## Installation
+
+If you want to use the latest version of `styles` from GitHub, ensure that you have the devtools package installed, and then use devtools::install_github() to download and install `styles.`
+
+```{r, eval=FALSE}
+# Install devtools if not installed (for GitHub Package)
+if (!require("devtools"))   install.packages("devtools")
+
+# Install the styles repository
+remotes::install_github("Daniel-Carpenter/styles", build_vignettes = TRUE)
+```
+
+## Examples
+
+### Setup
+
+First, we load the `styles` package.
+
+```{r}
+library(styles)
+```
+
+### Adjusting `color` Aesthetic
+
+Let's dive into some examples of how to use styles in conjunction with `ggplot2.` First, we will create a basic plot using `ggplot2`, without any styling.
+
+```{r}
+library(ggplot2)
+
+# Create a basic plot structure
+basePlot <- ggplot(data = mtcars,
+                   aes(x     = wt,
+                       shape = as.factor(cyl),
+                       color = as.factor(cyl),
+                       y     = mpg
+                   )
+) +
+  geom_point(size = 5)
+basePlot # Display
+```
+
+Now, let's look at how we can use the color palette and theme with our base plot.
+
+```{r}
+basePlot +
+  
+  # Use the color palette
+  scale_color_dc() +
+  
+  # Get the ggplot theme
+  theme_dc()
+```
+
+This plot now properly leverages the brand.
+
+### Other Options with `color` Aesthetic
+
+Here are some other useful examples that demonstrate some of the function's flexibility.
+
+```{r}
+# Use the accent color palette instead of the fill
+# This would be beneficial if you need to use the fill colors instead of the accent colors.
+basePlot + scale_color_dc(overrideWithFill = TRUE) + theme_dc()
+
+# Add the fill color and turn off legend with optional parameter
+# You can use any parameter supplied through ggplot2::scale_fill_manual()
+basePlot + scale_color_dc(guide = 'none') + theme_dc()
+
+# You could also change the theme through the optional parameters
+# Add the theme with additional optional theme parameters
+basePlot + scale_color_dc() + theme_dc(legend.position = 'right')
+```
+
+Additional parameter called `borderMode` controls the theme borders. [Inspiration for facets came from 1.2.2 in this book.](https://socviz.co/lookatdata.html)
+
+```{r}
+# One other option is to remove the border when faceting
+# Note this example is only for demonstrating the borders. Faceting in
+# this context is another issue in itself. 
+basePlot + scale_color_dc() + theme_dc(borderMode = 'facet') +
+  facet_grid(~as.factor(cyl))
+
+# Note you can also use 'borders' to add all border back.
+basePlot + scale_color_dc() + theme_dc(borderMode = 'borders')
+```
+
+### Use only `1 color`
+
+Most of the time you only need one color. Here is an example of how you might get that.
+
+```{r}
+basePlot + 
+  
+  # Use only a single color (note using line palette)
+  geom_point(color = scale_dc('base', 'base2'),
+             size  = 5) +
+  
+  # Get the ggplot theme
+  theme_dc()
+```
+
+### Adjusting `fill` Aesthetic
+
+Here are some examples of how you could use the fill colors in plots.
+
+Create a Base plot
+
+```{r}
+# Create basic ggplot object
+ggplotObject <- ggplot(mtcars, aes(y = mpg, x = as.factor(cyl), 
+                                   fill = as.factor(cyl), color = as.factor(cyl))) +
+  
+  # Note that gray border used for demonstration. Please use scale_color_dc()
+  # as much as possible
+  geom_boxplot(size = 0.8)
+```
+
+Here is the main combination that you might use.
+
+```{r}
+# Add the fill and color
+ggplotObject + scale_fill_dc() + scale_color_dc()
+```
+
+Below shows more options that demonstates some of the function's flexibility.
+
+```{r}
+# Create basic ggplot object
+ggplotObject2 <- ggplot(mtcars, aes(y = mpg, x = as.factor(cyl), fill = as.factor(cyl))) +
+  
+  # Note that gray border used for demonstration. Please use scale_color_dc()
+  # as much as possible
+  geom_boxplot(size = 0.8, color = scale_dc('gray', 'gray3'))
+
+# Add the accent color
+ggplotObject2 + scale_fill_dc(overrideWithAccent = TRUE)
+
+# Add the fill color and turn off legend with optional parameter
+ggplotObject2 + scale_fill_dc(guide = 'none')
+```
+
+### How to use *Times New Roman*
+
+> Use this setting for ***non-website*** reporting, i.e., PDF distribution.
+
+#### Non-Label Font Control
+
+```{r}
+basePlot +
+  
+  # Use the color palette
+  scale_color_dc() +
+  
+  # Get the ggplot theme
+  theme_dc(inTimesNewRoman = TRUE)
+```
+
+#### Label Font Control
+
+```{r}
+basePlot + 
+  
+  geom_text(aes(label = paste(mpg)),
+            vjust = 1.2, hjust = -0.2,
+            size = 3.5,
+            
+            # ** IMPORTANT: theme() does not control text labels
+            # Need to set family to this font!
+            family = styles::getTimesNewRomanFamily()
+  ) + 
+  
+  # This controls all non-label fonts
+  theme_dc(inTimesNewRoman = TRUE)
+```
+
+### Darken Text when Over Filled Elements
+
+```{r}
+ggplot(mtcars, aes(y = mpg, x = wt, color = as.factor(cyl))) +
+  geom_point(aes(fill = as.factor(cyl)),
+             size = 10,
+             pch = 21,
+             color = 'transparent',
+             alpha = 0.9
+  ) +
+  geom_text(aes(label = round(mpg, 0))) +
+  scale_fill_dc() +
+  
+  # KEY - darken the text so that it is easier to view
+  # Over fill
+  scale_color_dc(darkenPaletteForTextGeoms = TRUE) +
+  theme_dc()
+```
+
+### Offset or Reverse Order of Colors
+
+```{r}
+# Offset the colors by 1
+basePlot + scale_color_dc(colorOffset = 1)
+
+# reverse the order of the palette
+basePlot + scale_color_dc(reverseOrder = TRUE)
+```
+
+### Override the palette with a color blind palette
+
+```{r}
+# Use color blind friendly palette (works with fill too)
+basePlot + scale_color_dc(useColorBlindPalette = TRUE)
+
+# Change the palette (can use cols4all::c4a_palettes() to try others)
+# Also, can demo others in GUI using cols4all::c4a()
+basePlot + scale_color_dc(useColorBlindPalette = TRUE, 
+                          colorBlindPaletteName = 'color_blind')
+```
+
+## Numeric Formats
+
+> Mainly for quick financial axis formatting
+
+```{r}
+kDollarsFormat(1000,          scaleUnit = 'K')
+kDollarsFormat(1000000,       scaleUnit = 'M')
+kDollarsFormat(1000000,       scaleUnit = 'MM')
+kDollarsFormat(1000000000,    scaleUnit = 'B')
+kDollarsFormat(1500000000000, scaleUnit = 'T')
+kDollarsFormat(1000000,       scaleUnit = 'M', useDollarSign = FALSE)
+```
+
+Here are some examples of how you would commonly integrate them into `ggplot2`
+```{r}
+df <- mtcars
+df$mpg <- df$mpg*1000000
+
+# Create simple ggplot, no data shown by default
+gg <- df |>
+  ggplot(aes(y = mpg, x = wt)) +
+  theme_dc()
+
+# Text labels millions dollars
+gg + geom_text(aes(label = kDollarsFormat(mpg)))
+
+# y-axis format, using function defaults
+gg + scale_y_continuous(labels = kDollarsFormat)
+
+# y-axis format in *thousands* of dollars
+gg + scale_y_continuous(labels = ~kDollarsFormat(., scaleUnit = 'K'))
+
+# y-axis format with no decimals
+gg + scale_y_continuous(labels = ~kDollarsFormat(., roundToDigit = 0))
+
+# y-axis format with no dollar sign
+gg + scale_y_continuous(labels = ~kDollarsFormat(., useDollarSign = F))
+```
+
+## Colors Deep Dive
+
+This section take a closer look at the colors that are available to us in the `styles` package.
+
+### What Colors are Available?
+
+Notice `displayNames = TRUE`, which show you what hex codes are associated with the color names.
+
+Default is `displayNames = FALSE` for best functionality with plotting.
+
+```{r}
+# Fill colors
+scale_dc('fill', displayNames = TRUE)
+
+# Line colors
+scale_dc('color', displayNames = TRUE)
+
+# Blue and Gray colors, like the background of slide decks
+scale_dc('base', displayNames = TRUE)
+scale_dc('gray', displayNames = TRUE)
+
+# Text, Grays, and Blues
+scale_dc('text') # Text (dark gray) 
+scale_dc('base') # Grays that are in the brand
+scale_dc('gray') # Blues that are in the brand
+```
+
+### How to get `1 color`?
+
+```{r}
+# Single color from the fill palette
+scale_dc('fill', 'red')
+
+# Single color from the base palette
+scale_dc('gray', 'gray3')
+
+# Single color from the base palette
+scale_dc('base', 'base2')
+```
+
+### How to get `> 1 colors`
+
+```{r}
+# Get the first 3 colors in the line palette
+scale_dc('color', 3)
+
+# Get the last 3 colors in the fill palette
+scale_dc('color')[6:8]
+
+# Or access specific colors all at once
+scale_dc('color', 'base', 'orange', 'green', 'yellow')
+```

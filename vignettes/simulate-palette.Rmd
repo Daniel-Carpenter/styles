@@ -1,0 +1,131 @@
+---
+title: "Palette Viewer"
+output: rmarkdown::html_vignette
+vignette: >
+%\VignetteIndexEntry{Palette Viewer}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+  ---
+  
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+collapse = TRUE,
+comment = "#>",
+fig.width = 8,
+fig.height = 12
+)
+```
+
+```{r setup}
+library(styles)
+library(cowplot)
+library(tidyverse)
+library(colorspace)
+
+
+plotGeneration <- function(offset) {
+  
+  # Plot 1 ----------
+  p1 <- ggplot(mpg, aes(class)) +
+    geom_bar(aes(fill = drv, color = drv), linewidth = 0.66) +
+    theme_dc() + 
+    scale_fill_dc( colorOffset = offset) +
+    scale_color_dc(colorOffset = offset) 
+  
+  
+  
+  # Plot 2 ----------
+  data <- data.frame(
+    x = rep(1:10, times = 4),
+    y = c(runif(10, 0, 10), 
+          runif(10, 10, 20), 
+          runif(10, 20, 30),
+          runif(10, 30, 40)
+    ),
+    group = rep(c("Group1", "Group2", "Group3", "Group4"), each = 10)
+  )
+  
+  p2 <- ggplot(data, aes(x = x, y = y, color = group)) + 
+    geom_line(linewidth = 0.75) + 
+    geom_point(aes(fill = group),
+               pch = 21,
+               color = 'white',
+               stroke = 1,
+               size = 2.5) + 
+    theme(legend.position = "top") +
+    scale_fill_dc( colorOffset = offset, overrideWithAccent = T) +
+    scale_color_dc(colorOffset = offset)
+  
+  
+  
+  # Plot 2-3 ----------
+  data <- data.frame(
+    x = rep(1:10, times = 4),
+    y = c(runif(10, 0, 10), 
+          runif(10, 10, 20), 
+          runif(10, 20, 30),
+          runif(10, 30, 40)
+    ),
+    group = rep(c("Group1", "Group2", "Group3", "Group4"), each = 10)
+  )
+  
+  p2.1_base <- ggplot(mtcars, aes(x = wt, y = mpg, colour = as.factor(cyl))) +
+    geom_point(size = 3.5) + 
+    theme_dc()
+  
+  # two plots
+  p2.1.1 <- p2.1_base + scale_color_dc(colorOffset = offset, overrideWithFill = F)
+  p2.1.2 <- p2.1_base + scale_color_dc(colorOffset = offset, overrideWithFill = T)
+  
+  
+  
+  # Plot 3 ----------
+  
+  df <- economics_long |> 
+    filter(variable %in% unique(economics_long$variable)[3:6])
+  
+  p3 <- ggplot(df, aes(date, value01, colour = variable)) +
+    geom_line(linewidth = 0.75) + 
+    theme_dc() + 
+    scale_color_dc(colorOffset = offset)
+  
+  
+  
+  # Render ----------
+  
+  # Nested plot_grid for the third row with two columns
+  row3 <- plot_grid(p2.1.1, p2.1.2, ncol = 2)
+  
+  # Main plot_grid to arrange all rows and columns accordingly
+  finalPlot <- plot_grid(
+    p2,       # Second plot in second row, spanning full width
+    p1,       # First plot in first row, spanning full width
+    row3,     # Third row containing two plots
+    p3,       # Fourth plot in fourth row, spanning full width
+    ncol = 1, # Set the number of columns in the main grid to 1
+    align = 'v' # Ensure vertical alignment
+  )
+  
+  # Print the final plot layout
+  # cat('Offset of Palette #:', offset, '\n')
+  return(finalPlot) 
+}
+```
+
+```{r plots}
+# Render plot ----------
+map(0:7, plotGeneration)
+```
+
+```{r colorblindPlots, fig.height=4, fig.width=6}
+# View in colorblind mode
+pal_dc = scale_dc('color')
+
+specplot(pal_dc, type = "o")
+specplot(colorspace::deutan(pal_dc), type = "o")
+specplot(colorspace::tritan(pal_dc), type = "o")
+specplot(colorspace::protan(pal_dc), type = "o")
+
+# To determine the fill colors
+# data.frame(colorspace::lighten(scale_dc('color'), 0.55))
+```

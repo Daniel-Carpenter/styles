@@ -1,17 +1,32 @@
 Package: styles
 Type: Package
-Date: 2022-12-01
-Version: 0.1.0
-Title: R color palettes and styles.
-Author@R: person("Daniel", "Carpenter", email = "dbry1024@gmail.com",
+Title: Daniel Carpenter's Branding Packages for `ggplot2`
+Version: 1.10
+Author@R: person("Daniel", "Carpenter", email = "daniel.carpenter@chickasaw.net",
                   role = c("aut", "cre") )
 Author: Daniel Carpenter [aut, cre]
-Maintainer: Daniel Carpenter <dbry1024@gmail.com>
-License: GPL (>= 2)
-Description: Color style implementation in R using `ggplot2`. Also includes R library.
+Maintainer: Daniel Carpenter <daniel.carpenter@chickasaw.net>
+Description: This package implements branding in ggplot2. This package 
+    includes the base gray and base gradients, text colors, and the data 
+    visualization colors. The package works natively with ggplot2 for ease 
+    of brand implementation.
+License: GPL (>= 3)
 Encoding: UTF-8
 LazyData: true
 Depends: R (>= 3.1.0)
 Imports:
-    ggplot2
-RoxygenNote: 7.2.1
+    tidyverse,
+    ggplot2,
+    stats,
+    utils,
+    scales,
+    cols4all,
+    colorspace,
+    cowplot
+RoxygenNote: 7.3.2
+Suggests: 
+    grDevices,
+    knitr,
+    rmarkdown
+VignetteBuilder: knitr
+URL: https://cn-cmac.github.io/styles.cmac/
