@@ -1,0 +1,10 @@
+pandoc: 3.1.11
+pkgdown: 2.1.3
+pkgdown_sha: ~
+articles:
+  intro-to-package: intro-to-package.html
+  simulate-palette: simulate-palette.html
+last_built: 2025-08-11T18:00Z
+urls:
+  reference: https://daniel-carpenter.github.io/styles/reference
+  article: https://daniel-carpenter.github.io/styles/articles
