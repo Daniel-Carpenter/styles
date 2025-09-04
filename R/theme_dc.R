@@ -57,6 +57,7 @@ theme_dc <- function(borderMode = 'default',
 
   # Define a minimal theme for the plot (borders theme)
   baseTheme = theme(
+
     # Set panel background
     panel.background = element_rect(fill =  backgroundCol, color = backgroundCol),
 
@@ -67,8 +68,7 @@ theme_dc <- function(borderMode = 'default',
     panel.grid.major.y = element_line(color = yAxisGridlineColor),
 
     # Format text-related elements and margins
-    text = element_text(size = 11),
-    # global font size
+    text = element_text(size = 11, family = "open_sans"),
 
     # Main Title
     plot.title        = element_text(
