@@ -1,7 +1,7 @@
 Package: styles
 Type: Package
 Title: Daniel Carpenter's Branding Packages for `ggplot2`
-Version: 1.13
+Version: 1.12
 Author@R: person("Daniel", "Carpenter", email = "dbry1024@gmail.com",
                   role = c("aut", "cre") )
 Author: Daniel Carpenter [aut, cre]
@@ -22,9 +22,7 @@ Imports:
     scales,
     cols4all,
     colorspace,
-    cowplot,
-    sysfonts,
-    showtext
+    cowplot
 RoxygenNote: 7.3.2
 Suggests: 
     grDevices,
